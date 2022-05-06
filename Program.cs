@@ -13,7 +13,7 @@ namespace Etapa1
             MiEscuela.Cursos = new List<Curso>(){
                         new Curso{Nombre = "101",Jornada = TiposJornada.Mañana},
                         new Curso{Nombre = "201",Jornada = TiposJornada.Mañana},
-                        new Curso{Nombre = "302",Jornada = TiposJornada.Mañana}
+                        new Curso{Nombre = "301",Jornada = TiposJornada.Mañana}
             };
             MiEscuela.Cursos.Add(new Curso{Nombre = "102",Jornada = TiposJornada.Tarde});
             MiEscuela.Cursos.Add(new Curso{Nombre = "202",Jornada = TiposJornada.Tarde});
@@ -23,10 +23,22 @@ namespace Etapa1
                         new Curso{Nombre = "501",Jornada = TiposJornada.Mañana},
                         new Curso{Nombre = "502",Jornada = TiposJornada.Mañana}
             };
-
+            //Curso temp = new Curso{Nombre="101-Vacacional",Jornada = TiposJornada.Noche};
             MiEscuela.Cursos.AddRange(otraColeccion);
-
+            //MiEscuela.Cursos.Add(temp);
             ImprimirCursosEscuela(MiEscuela);
+            //WriteLine("Curso.Hash "+temp.GetHashCode());
+
+            Predicate<Curso> miAlgoritmo = Predicado;
+            MiEscuela.Cursos.RemoveAll(miAlgoritmo);
+
+            //MiEscuela.Cursos.Remove(temp);
+            ImprimirCursosEscuela(MiEscuela);
+        }
+
+        private static bool Predicado(Curso curobj)
+        {
+            return curobj.Nombre == "301";
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
