@@ -1,4 +1,5 @@
 ﻿using CoreEscuela.Entidades;
+using static System.Console;
 namespace Etapa1
 {
     class Program
@@ -9,36 +10,28 @@ namespace Etapa1
             Escuela MiEscuela = new Escuela("Platzi Academy", 2012, TiposEscuela.Primaria,
                 pais: "Colombia", ciudad: "Bogota");
 
-            Curso[] arregloCursos = new Curso[3];
-
-            arregloCursos[0] = new Curso()
-            {
-                Nombre = "102"
+            MiEscuela.Cursos = new Curso[] {
+                        new Curso(){Nombre = "102"},
+                        new Curso(){Nombre = "201"},
+                        new Curso{Nombre = "302"}
             };
 
-            Curso Curso2 = new Curso()
+            ImprimirCursosEscuela(MiEscuela);
+        }
+
+        private static void ImprimirCursosEscuela(Escuela escuela)
+        {
+            WriteLine("====================");
+            WriteLine("Cursos de la escuela");
+            WriteLine("=====================");
+
+            if (escuela?.Cursos != null)
             {
-                Nombre = "201"
-            };
-            arregloCursos[1] = Curso2;
-
-            arregloCursos[2] = new Curso
-            {
-                Nombre = "302"
-            };
-
-            Console.WriteLine(MiEscuela);
-            Console.WriteLine("============");
-
-            ImprimirCursosWhile(arregloCursos);
-            Console.WriteLine("============");
-            ImprimirCursosDoWhile(arregloCursos);
-            Console.WriteLine("============");
-            ImprimirCursosFor(arregloCursos);
-            Console.WriteLine("============");
-            ImprimirCursosForEach(arregloCursos);
-           
-
+                foreach (Curso curso in escuela.Cursos)
+                {
+                    WriteLine($"Nombre: {curso.Nombre}, Id: {curso.UniqueId}");
+                }
+            }
         }
 
         private static void ImprimirCursosWhile(Curso[] arregloCursos)
@@ -46,7 +39,7 @@ namespace Etapa1
             int cont = 0;
             while (cont < arregloCursos.Length)
             {
-                Console.WriteLine($"Nombre: {arregloCursos[cont].Nombre}, Id: {arregloCursos[cont].UniqueId}");
+                WriteLine($"Nombre: {arregloCursos[cont].Nombre}, Id: {arregloCursos[cont].UniqueId}");
                 cont++;
             }
         }
@@ -55,7 +48,7 @@ namespace Etapa1
             int cont = 0;
             do
             {
-                Console.WriteLine($"Nombre: {arregloCursos[cont].Nombre}, Id: {arregloCursos[cont].UniqueId}");
+                WriteLine($"Nombre: {arregloCursos[cont].Nombre}, Id: {arregloCursos[cont].UniqueId}");
                 cont++;
             } while (cont < arregloCursos.Length);
         }
@@ -63,14 +56,14 @@ namespace Etapa1
         {
             for (int i = 0; i < arregloCursos.Length; i++)
             {
-                Console.WriteLine($"Nombre: {arregloCursos[i].Nombre}, Id: {arregloCursos[i].UniqueId}");
+                WriteLine($"Nombre: {arregloCursos[i].Nombre}, Id: {arregloCursos[i].UniqueId}");
             }
         }
         private static void ImprimirCursosForEach(Curso[] arregloCursos)
         {
             foreach (Curso curso in arregloCursos)
             {
-                Console.WriteLine($"Nombre: {curso.Nombre}, Id: {curso.UniqueId}");
+                WriteLine($"Nombre: {curso.Nombre}, Id: {curso.UniqueId}");
             }
         }
     }

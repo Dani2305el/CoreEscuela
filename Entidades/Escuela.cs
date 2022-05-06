@@ -1,25 +1,31 @@
-namespace CoreEscuela.Entidades{
-    class Escuela{
+namespace CoreEscuela.Entidades
+{
+    class Escuela
+    {
         string nombre;
-        public string Nombre{
-            get{return nombre;}
-            set{nombre = value;}
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
         }
-        public int AnioCreacion{get;set;}
+        public int AnioCreacion { get; set; }
         public string Pais { get; set; }
         public string Cuidad { get; set; }
         public TiposEscuela TipoEscuela { get; set; }
-        
+
+        public Curso[] Cursos{get;set;}
+
         /*Constructor reducido*/
-        public Escuela(string nombre,int anioCreacion)=>(Nombre,AnioCreacion) = (nombre,anioCreacion);
-       
+        public Escuela(string nombre, int anioCreacion) => (Nombre, AnioCreacion) = (nombre, anioCreacion);
+
         /*Constructor tradicional*/ //con parametros opcionales
-        public Escuela(string nombre,int anioCreacion, 
-            TiposEscuela tipoEscuela, string pais="",string ciudad=""){
-                //asignacion por tuplas
-                (Nombre,AnioCreacion) = (nombre,anioCreacion);
-                Pais = pais;
-                Cuidad = ciudad;
+        public Escuela(string nombre, int anioCreacion,
+            TiposEscuela tipoEscuela, string pais = "", string ciudad = "")
+        {
+            //asignacion por tuplas
+            (Nombre, AnioCreacion) = (nombre, anioCreacion);
+            Pais = pais;
+            Cuidad = ciudad;
         }
         public override string ToString()
         {
