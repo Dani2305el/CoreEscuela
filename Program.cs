@@ -9,36 +9,32 @@ namespace Etapa1
 
             Escuela MiEscuela = new Escuela("Platzi Academy", 2012, TiposEscuela.Primaria,
                 pais: "Colombia", ciudad: "Bogota");
-            
+
             MiEscuela.Cursos = new List<Curso>(){
                         new Curso{Nombre = "101",Jornada = TiposJornada.Mañana},
                         new Curso{Nombre = "201",Jornada = TiposJornada.Mañana},
                         new Curso{Nombre = "301",Jornada = TiposJornada.Mañana}
             };
-            MiEscuela.Cursos.Add(new Curso{Nombre = "102",Jornada = TiposJornada.Tarde});
-            MiEscuela.Cursos.Add(new Curso{Nombre = "202",Jornada = TiposJornada.Tarde});
+            MiEscuela.Cursos.Add(new Curso { Nombre = "102", Jornada = TiposJornada.Tarde });
+            MiEscuela.Cursos.Add(new Curso { Nombre = "202", Jornada = TiposJornada.Tarde });
 
             List<Curso> otraColeccion = new List<Curso>(){
                         new Curso{Nombre = "402",Jornada = TiposJornada.Mañana},
                         new Curso{Nombre = "501",Jornada = TiposJornada.Mañana},
-                        new Curso{Nombre = "502",Jornada = TiposJornada.Mañana}
+                        new Curso{Nombre = "501",Jornada = TiposJornada.Tarde}
             };
-            //Curso temp = new Curso{Nombre="101-Vacacional",Jornada = TiposJornada.Noche};
+            /*
             MiEscuela.Cursos.AddRange(otraColeccion);
-            //MiEscuela.Cursos.Add(temp);
             ImprimirCursosEscuela(MiEscuela);
-            //WriteLine("Curso.Hash "+temp.GetHashCode());
 
-            Predicate<Curso> miAlgoritmo = Predicado;
-            MiEscuela.Cursos.RemoveAll(miAlgoritmo);
-
-            //MiEscuela.Cursos.Remove(temp);
+            MiEscuela.Cursos.RemoveAll(delegate (Curso cur)
+            {
+                return cur.Nombre == "301";
+            });
+            
+            MiEscuela.Cursos.RemoveAll((cur)=>cur.Nombre == "501" && cur.Jornada == TiposJornada.Mañana);
+            */
             ImprimirCursosEscuela(MiEscuela);
-        }
-
-        private static bool Predicado(Curso curobj)
-        {
-            return curobj.Nombre == "301";
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
