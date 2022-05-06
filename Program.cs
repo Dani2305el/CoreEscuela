@@ -24,6 +24,8 @@ namespace CoreEscuela
                 foreach (Curso curso in escuela.Cursos)
                 {
                     WriteLine($"Nombre: {curso.Nombre}, Id: {curso.UniqueId}");
+                    WriteLine($"Evaluacion alumno: {curso.Evaluaciones[0].Alumno.Nombre}"+
+                     $"nota:{curso.Evaluaciones[0].Nota}");
                 }
             }
         }

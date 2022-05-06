@@ -20,12 +20,41 @@ namespace CoreEscuela.App
 
             CargarCursos();
             CargarAsignaturas();
-           ///CargarEvaluaciones();
+            CargarEvaluaciones();
         }
 
         private void CargarEvaluaciones()
         {
-            throw new NotImplementedException();
+            int[] evaluacionNro = { 1, 2, 3, 4, 5 };
+           
+            foreach (Curso curso in Escuela.Cursos)
+            {
+
+                var evaluaciones = from alumno in curso.Alumnos
+                                   from asignatura in curso.Asignaturas
+                                   from nro in evaluacionNro
+                                   select new Evaluaciones()
+                                   {
+                                       Nombre = $"\"Examen {nro}\"",
+                                       Alumno = alumno,
+                                       Asignatura = asignatura,
+                                       Nota = NotaRanodm()
+                                   };
+
+                curso.Evaluaciones = evaluaciones.ToList();
+            }
+        }
+
+        public float NotaRanodm()
+        {
+            Random rand = new Random();
+            double min = 0.0;
+            double max = 5.1;
+            double range = max - min;
+            double sample = rand.NextDouble();
+            double scaled = (sample * range) + min;
+            float f = (float)scaled;
+            return (float)Math.Round(f,1) ;
         }
 
         private void CargarAsignaturas()
