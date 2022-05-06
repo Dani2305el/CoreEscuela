@@ -17,13 +17,44 @@ namespace Etapa1
             };
 
             ImprimirCursosEscuela(MiEscuela);
+
+            bool rta = 20 == 20;
+            int cantidad = 20;
+            if (rta==false)
+            {
+                WriteLine("Se cumpló la condición #1");
+            }
+            else if (cantidad>50)
+            {
+                WriteLine("Se cumpló la condición #2");
+            }
+            else{
+                WriteLine("Ninguna se cumplió");
+            }
+
+            if(cantidad>5 && rta == false)
+            {
+                WriteLine("Se cumpló la condición #3");
+            }
+            if(cantidad>5 && rta)
+            {
+                WriteLine("Se cumpló la condición #4");
+            }
+            if(cantidad>50 || rta)
+            {
+                WriteLine("Se cumpló la condición #5");
+            }
+            if( (cantidad>50 || rta) && (cantidad%2==0))
+            {
+                WriteLine("Se cumpló la condición #6");
+            }
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
         {
             WriteLine("====================");
             WriteLine("Cursos de la escuela");
-            WriteLine("=====================");
+            WriteLine("====================");
 
             if (escuela?.Cursos != null)
             {
