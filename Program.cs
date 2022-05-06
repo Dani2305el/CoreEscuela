@@ -9,45 +9,24 @@ namespace Etapa1
 
             Escuela MiEscuela = new Escuela("Platzi Academy", 2012, TiposEscuela.Primaria,
                 pais: "Colombia", ciudad: "Bogota");
+            
+            MiEscuela.Cursos = new List<Curso>(){
+                        new Curso{Nombre = "101",Jornada = TiposJornada.Mañana},
+                        new Curso{Nombre = "201",Jornada = TiposJornada.Mañana},
+                        new Curso{Nombre = "302",Jornada = TiposJornada.Mañana}
+            };
+            MiEscuela.Cursos.Add(new Curso{Nombre = "102",Jornada = TiposJornada.Tarde});
+            MiEscuela.Cursos.Add(new Curso{Nombre = "202",Jornada = TiposJornada.Tarde});
 
-            MiEscuela.Cursos = new Curso[] {
-                        new Curso(){Nombre = "102"},
-                        new Curso(){Nombre = "201"},
-                        new Curso{Nombre = "302"}
+            List<Curso> otraColeccion = new List<Curso>(){
+                        new Curso{Nombre = "402",Jornada = TiposJornada.Mañana},
+                        new Curso{Nombre = "501",Jornada = TiposJornada.Mañana},
+                        new Curso{Nombre = "502",Jornada = TiposJornada.Mañana}
             };
 
+            MiEscuela.Cursos.AddRange(otraColeccion);
+
             ImprimirCursosEscuela(MiEscuela);
-
-            bool rta = 20 == 20;
-            int cantidad = 20;
-            if (rta==false)
-            {
-                WriteLine("Se cumpló la condición #1");
-            }
-            else if (cantidad>50)
-            {
-                WriteLine("Se cumpló la condición #2");
-            }
-            else{
-                WriteLine("Ninguna se cumplió");
-            }
-
-            if(cantidad>5 && rta == false)
-            {
-                WriteLine("Se cumpló la condición #3");
-            }
-            if(cantidad>5 && rta)
-            {
-                WriteLine("Se cumpló la condición #4");
-            }
-            if(cantidad>50 || rta)
-            {
-                WriteLine("Se cumpló la condición #5");
-            }
-            if( (cantidad>50 || rta) && (cantidad%2==0))
-            {
-                WriteLine("Se cumpló la condición #6");
-            }
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
