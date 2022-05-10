@@ -34,10 +34,11 @@ namespace CoreEscuela.App
                         Random random = new Random(System.Environment.TickCount);
                         for (int i = 0; i < 5; i++)
                         {
-                            Evaluacion ev = new Evaluacion{
+                            Evaluacion ev = new Evaluacion
+                            {
                                 Asignatura = asignatura,
-                                Nombre = $"{asignatura.Nombre} Ev#{i+1}",
-                                Nota = (float)(5*random.NextDouble()),
+                                Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
+                                Nota = (float)(5 * random.NextDouble()),
                                 Alumno = alumno
                             };
                             alumno.Evaluaciones.Add(ev);
@@ -46,9 +47,25 @@ namespace CoreEscuela.App
                 }
             }
         }
+        public List<ObjetoEscuelaBase> GetObjetosEscuela()
+        {
+            List<ObjetoEscuelaBase> listaObj = new List<ObjetoEscuelaBase>();
+            listaObj.Add(Escuela);
+            listaObj.AddRange(Escuela.Cursos);
 
+            foreach (Curso c in Escuela.Cursos)
+            {
+                listaObj.AddRange(c.Asignaturas);
+                listaObj.AddRange(c.Alumnos);
 
-
+                foreach (Alumno a in c.Alumnos)
+                {
+                    listaObj.AddRange(a.Evaluaciones);
+                }
+            }
+            
+            return listaObj;
+        }
         private void CargarAsignaturas()
         {
             foreach (Curso curso in Escuela.Cursos)
