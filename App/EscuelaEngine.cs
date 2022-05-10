@@ -22,7 +22,26 @@ namespace CoreEscuela.App
             CargarAsignaturas();
             CargarEvaluaciones();
         }
+        public List<ObjetoEscuelaBase> GetObjetosEscuela()
+        {
+            List<ObjetoEscuelaBase> listaObj = new List<ObjetoEscuelaBase>();
+            listaObj.Add(Escuela);
+            listaObj.AddRange(Escuela.Cursos);
 
+            foreach (Curso c in Escuela.Cursos)
+            {
+                listaObj.AddRange(c.Asignaturas);
+                listaObj.AddRange(c.Alumnos);
+
+                foreach (Alumno a in c.Alumnos)
+                {
+                    listaObj.AddRange(a.Evaluaciones);
+                }
+            }
+            
+            return listaObj;
+        }
+        #region Métodos de carga
         private void CargarEvaluaciones()
         {
             foreach (Curso curso in Escuela.Cursos)
@@ -47,25 +66,7 @@ namespace CoreEscuela.App
                 }
             }
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela()
-        {
-            List<ObjetoEscuelaBase> listaObj = new List<ObjetoEscuelaBase>();
-            listaObj.Add(Escuela);
-            listaObj.AddRange(Escuela.Cursos);
-
-            foreach (Curso c in Escuela.Cursos)
-            {
-                listaObj.AddRange(c.Asignaturas);
-                listaObj.AddRange(c.Alumnos);
-
-                foreach (Alumno a in c.Alumnos)
-                {
-                    listaObj.AddRange(a.Evaluaciones);
-                }
-            }
-            
-            return listaObj;
-        }
+        
         private void CargarAsignaturas()
         {
             foreach (Curso curso in Escuela.Cursos)
@@ -110,4 +111,5 @@ namespace CoreEscuela.App
             }
         }
     }
+    #endregion
 }
