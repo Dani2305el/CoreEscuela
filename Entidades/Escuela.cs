@@ -35,11 +35,14 @@ namespace CoreEscuela.Entidades
         {
             Printer.DrawLine();
             Console.WriteLine("Limpiando Escuela...");
+
             foreach (Curso c in Cursos)
             {
                 c.LimpiarLugar();
             }
-            Console.WriteLine($"Escuela {Nombre}Limpiando limpia");
+
+            Printer.WriteTitle($"Escuela {Nombre} limpia");
+            Printer.Beep(10000,cantidad:3);
         }
     }
 }

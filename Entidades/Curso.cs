@@ -13,7 +13,7 @@ namespace CoreEscuela.Entidades{
         {
             Printer.DrawLine();
             Console.WriteLine("Limpiando establecimiento...");
-            Console.WriteLine($"Curso {Nombre}Limpiando limpio");
+            Console.WriteLine($"Curso {Nombre} limpio");
         }
     }
 }
