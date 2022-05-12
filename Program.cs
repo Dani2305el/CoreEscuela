@@ -18,8 +18,8 @@ namespace CoreEscuela
             Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
 
             Reporteador reporteador = new Reporteador(Engine.GetDiccionarioObjetos());
-            reporteador.GetListaEvaluacions();
-            
+            var evalList = reporteador.GetListaEvaluacions();
+            var listaAsign = reporteador.GetListaAsignaturas();
         }
 
         private static void AccionDelEvento(object sender, EventArgs e)
