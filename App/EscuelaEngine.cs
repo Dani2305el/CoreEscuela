@@ -23,23 +23,39 @@ namespace CoreEscuela.App
             CargarAsignaturas();
             CargarEvaluaciones();
         }
-        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic,bool impEval=false){
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic, bool impEval = false)
+        {
             foreach (var obj in dic)
             {
                 Printer.WriteTitle(obj.Key.ToString());
 
                 foreach (var val in obj.Value)
                 {
-                    if(val is Evaluacion){
-                        if(impEval){
+                    switch (obj.Key)
+                    {
+                        case LlaveDiccionario.Evaluacion:
+                            if (impEval)
+                            {
+                                Console.WriteLine(val);
+                            }
+                            break;
+                        case LlaveDiccionario.Escuela:
+                            Console.WriteLine("Escuela: " + val);
+                            break;
+                        case LlaveDiccionario.Alumno:
+                            Console.WriteLine("Alumno: " + val.Nombre);
+                            break;
+                        case LlaveDiccionario.Curso:
+                            var curTemp = val as Curso;
+                            if (curTemp != null)
+                            {
+                                int count = curTemp.Alumnos.Count;
+                                Console.WriteLine("Curso: " + val.Nombre + " Cantidad alumnos " + count);
+                            }
+                            break;
+                        default:
                             Console.WriteLine(val);
-                        }
-                    } else if(val is Escuela){
-                        Console.WriteLine("Escuela: "+val);
-                    }else if(val is Alumno){
-                        Console.WriteLine("Alumno: "+val.Nombre);
-                    }else{
-                        Console.WriteLine(val);
+                            break;
                     }
                 }
             }
@@ -48,8 +64,8 @@ namespace CoreEscuela.App
         {
             Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
 
-            dic.Add(LlaveDiccionario.Escuela, new[] {Escuela});
-            dic.Add(LlaveDiccionario.Curso,Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+            dic.Add(LlaveDiccionario.Escuela, new[] { Escuela });
+            dic.Add(LlaveDiccionario.Curso, Escuela.Cursos.Cast<ObjetoEscuelaBase>());
 
             var listTempEv = new List<Evaluacion>();
             var listTempAsign = new List<Asignatura>();
@@ -58,15 +74,15 @@ namespace CoreEscuela.App
             {
                 listTempAsign.AddRange(cur.Asignaturas);
                 listTempAlum.AddRange(cur.Alumnos);
-                
+
                 foreach (var alum in cur.Alumnos)
                 {
                     listTempEv.AddRange(alum.Evaluaciones);
                 }
             }
-            dic.Add(LlaveDiccionario.Asignatura,listTempAsign.Cast<ObjetoEscuelaBase>());
-            dic.Add(LlaveDiccionario.Alumno,listTempAlum.Cast<ObjetoEscuelaBase>());
-            dic.Add(LlaveDiccionario.Evaluacion,listTempEv.Cast<ObjetoEscuelaBase>());
+            dic.Add(LlaveDiccionario.Asignatura, listTempAsign.Cast<ObjetoEscuelaBase>());
+            dic.Add(LlaveDiccionario.Alumno, listTempAlum.Cast<ObjetoEscuelaBase>());
+            dic.Add(LlaveDiccionario.Evaluacion, listTempEv.Cast<ObjetoEscuelaBase>());
             return dic;
         }
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(bool traeEvaluaciones = true, bool traeAlumnos = true,
@@ -160,7 +176,7 @@ namespace CoreEscuela.App
                             {
                                 Asignatura = asignatura,
                                 Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
-                                Nota = (float)(5 * random.NextDouble()),
+                                Nota = (float)Math.Round(5 * random.NextDouble(),2),
                                 Alumno = alumno
                             };
                             alumno.Evaluaciones.Add(ev);
