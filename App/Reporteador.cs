@@ -1,5 +1,5 @@
 using CoreEscuela.Entidades;
-
+using System.Linq;
 namespace CoreEscuela.App
 {
     public class Reporteador
@@ -14,9 +14,16 @@ namespace CoreEscuela.App
             _diccionario = dicObjsEscuela;
         }
 
-        public IEnumerable<Evaluacion> GetListaEvaluacions()
+        public IEnumerable<Escuela> GetListaEvaluacions()
         {
-            return _diccionario[LlaveDiccionario.Evaluacion];
+            IEnumerable<Escuela> res = null;
+            if (_diccionario.TryGetValue(LlaveDiccionario.Escuela, out IEnumerable<ObjetoEscuelaBase> lista))
+            {
+                res = lista.Cast<Escuela>();
+            }
+
+           return res;
+            
         }
     }
 }
