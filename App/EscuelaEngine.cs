@@ -163,20 +163,20 @@ namespace CoreEscuela.App
         #region Métodos de carga
         private void CargarEvaluaciones()
         {
+            Random random = new Random();
             foreach (Curso curso in Escuela.Cursos)
             {
                 foreach (Asignatura asignatura in curso.Asignaturas)
                 {
                     foreach (Alumno alumno in curso.Alumnos)
                     {
-                        Random random = new Random(System.Environment.TickCount);
                         for (int i = 0; i < 5; i++)
                         {
                             Evaluacion ev = new Evaluacion
                             {
                                 Asignatura = asignatura,
                                 Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
-                                Nota = (float)Math.Round(5 * random.NextDouble(),2),
+                                Nota = MathF.Round(5 * (float)random.NextDouble(),2),
                                 Alumno = alumno
                             };
                             alumno.Evaluaciones.Add(ev);
