@@ -25,6 +25,8 @@ namespace CoreEscuela
             {
                 WriteLine($"Key: {keyValPair.Key} Valor: {keyValPair.Value}");
             }
+
+            var dictmp = Engine.GetDiccionarioObjetos();
         }
         private static void ImprimirCursosEscuela(Escuela escuela)
         {

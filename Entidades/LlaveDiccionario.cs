@@ -4,4 +4,5 @@ public enum LlaveDiccionario
     Alumno,
     Asignatura,
     Escuela,
+    Evaluacion
 }
