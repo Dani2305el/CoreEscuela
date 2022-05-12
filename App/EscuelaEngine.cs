@@ -23,14 +23,24 @@ namespace CoreEscuela.App
             CargarAsignaturas();
             CargarEvaluaciones();
         }
-        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic){
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic,bool impEval=false){
             foreach (var obj in dic)
             {
                 Printer.WriteTitle(obj.Key.ToString());
-                Console.WriteLine(obj);
+
                 foreach (var val in obj.Value)
                 {
-                    Console.WriteLine(val);
+                    if(val is Evaluacion){
+                        if(impEval){
+                            Console.WriteLine(val);
+                        }
+                    } else if(val is Escuela){
+                        Console.WriteLine("Escuela: "+val);
+                    }else if(val is Alumno){
+                        Console.WriteLine("Alumno: "+val.Nombre);
+                    }else{
+                        Console.WriteLine(val);
+                    }
                 }
             }
         }
