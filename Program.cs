@@ -18,13 +18,8 @@ namespace CoreEscuela
             ImprimirCursosEscuela(Engine.Escuela);
 
             int dummy;
-            var listaObjetos = Engine.GetObjetosEscuela(
-                out int conteoEvaluaciones,
-                out int conteoCursos,
-                out int conteoAsignaturas,
-                out int conteoAlumnos
-            );
-            //Engine.Escuela.LimpiarLugar();
+            var listaObjetos = Engine.GetObjetosEscuela();
+
         }
         private static void ImprimirCursosEscuela(Escuela escuela)
         {

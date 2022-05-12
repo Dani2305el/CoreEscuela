@@ -22,34 +22,34 @@ namespace CoreEscuela.App
             CargarAsignaturas();
             CargarEvaluaciones();
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(bool traeEvaluaciones=true, bool traeAlumnos=true,
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(bool traeEvaluaciones=true, bool traeAlumnos=true,
                                                         bool traeAsignaturas=true, bool traeCursos=true
                                                         )                                              
         {
             return GetObjetosEscuela(out int dummy,out dummy,out dummy,out dummy);
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(out int conteoEvaluaciones,bool traeEvaluaciones=true, 
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(out int conteoEvaluaciones,bool traeEvaluaciones=true, 
                                                         bool traeAlumnos=true,
                                                         bool traeAsignaturas=true, bool traeCursos=true
                                                         )                                              
         {
             return GetObjetosEscuela(out conteoEvaluaciones,out int dummy,out dummy,out dummy);
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(out int conteoEvaluaciones,out int conteoCursos,
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(out int conteoEvaluaciones,out int conteoCursos,
                                                         bool traeEvaluaciones=true, bool traeAlumnos=true,
                                                         bool traeAsignaturas=true, bool traeCursos=true
                                                         )                                              
         {
             return GetObjetosEscuela(out conteoEvaluaciones,out conteoCursos,out int dummy,out dummy);
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(out int conteoEvaluaciones,out int conteoCursos,
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(out int conteoEvaluaciones,out int conteoCursos,
                                                         out int conteoAsignaturas,bool traeEvaluaciones=true, bool traeAlumnos=true,
                                                         bool traeAsignaturas=true, bool traeCursos=true
                                                         )                                              
         {
             return GetObjetosEscuela(out conteoEvaluaciones,out conteoCursos,out conteoAsignaturas,out int dummy);
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(out int conteoEvaluaciones,
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(out int conteoEvaluaciones,
                                                         out int conteoCursos,
                                                         out int conteoAsignaturas,
                                                         out int conteoAlumnos,
@@ -94,7 +94,7 @@ namespace CoreEscuela.App
                 }
             }
 
-            return listaObj;
+            return listaObj.AsReadOnly();
         }
         
         #region Métodos de carga
