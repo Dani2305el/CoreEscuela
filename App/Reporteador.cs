@@ -24,14 +24,27 @@ namespace CoreEscuela.App
                 return new List<Evaluacion>();
             }
         }
-        public IEnumerable<string> GetListaAsignaturas()
+         public IEnumerable<string> GetListaAsignaturas()
         {
-            var listaEv = GetListaEvaluacions();
+            return GetListaAsignaturas(out var dummy);   
+        }
+        public IEnumerable<string> GetListaAsignaturas(out IEnumerable<Evaluacion>  listaEv)
+        {
+            listaEv = GetListaEvaluacions();
 
             return (from Evaluacion ev in listaEv select ev.Asignatura.Nombre).Distinct();   
         }
         public Dictionary<string,IEnumerable<Evaluacion>> getDicEvaluacionXAsign(){
+             
              Dictionary<string,IEnumerable<Evaluacion>> resDic = new  Dictionary<string,IEnumerable<Evaluacion>> ();
+             
+             var listaAsign = GetListaAsignaturas(out var listaEv);
+             foreach (var asign in listaAsign)
+             {
+                 var evalsAsign = from eval in listaEv where eval.Asignatura.Nombre == asign select eval;
+                 resDic.Add(asign,evalsAsign);
+             }
+
              return resDic;
         }
     }
