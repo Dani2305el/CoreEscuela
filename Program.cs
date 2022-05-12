@@ -27,6 +27,8 @@ namespace CoreEscuela
             }
 
             var dictmp = Engine.GetDiccionarioObjetos();
+
+            Engine.ImprimirDiccionario(dictmp);
         }
         private static void ImprimirCursosEscuela(Escuela escuela)
         {

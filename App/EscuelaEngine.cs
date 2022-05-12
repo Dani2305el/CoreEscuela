@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreEscuela.Entidades;
+using CoreEscuela.Util;
 
 namespace CoreEscuela.App
 {
@@ -21,6 +22,17 @@ namespace CoreEscuela.App
             CargarCursos();
             CargarAsignaturas();
             CargarEvaluaciones();
+        }
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic){
+            foreach (var obj in dic)
+            {
+                Printer.WriteTitle(obj.Key.ToString());
+                Console.WriteLine(obj);
+                foreach (var val in obj.Value)
+                {
+                    Console.WriteLine(val);
+                }
+            }
         }
         public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
         {
