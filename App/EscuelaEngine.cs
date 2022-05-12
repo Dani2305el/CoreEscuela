@@ -22,12 +22,12 @@ namespace CoreEscuela.App
             CargarAsignaturas();
             CargarEvaluaciones();
         }
-        public Dictionary<string, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
+        public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
         {
-            Dictionary<string, IEnumerable<ObjetoEscuelaBase>> dic = new Dictionary<string, IEnumerable<ObjetoEscuelaBase>>();
+            Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
 
-            dic.Add("Escuela", new[] {Escuela});
-            dic.Add("Cursos",Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+            dic.Add(LlaveDiccionario.Escuela, new[] {Escuela});
+            dic.Add(LlaveDiccionario.Curso,Escuela.Cursos.Cast<ObjetoEscuelaBase>());
 
             return dic;
         }
