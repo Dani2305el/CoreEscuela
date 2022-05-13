@@ -10,8 +10,8 @@ namespace CoreEscuela
     {
         static void Main(string[] args)
         {
-            //AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
-            //AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.Beep(2000, 1000, 1);
+            AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
+            AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.Beep(2000, 1000, 1);
 
             EscuelaEngine Engine = new EscuelaEngine();
             Engine.Inicializar();
@@ -64,14 +64,17 @@ namespace CoreEscuela
                     WriteLine("La nota de la evaluación ha sido ingresada correctamente");
                 }
                 catch(ArgumentOutOfRangeException arge){
-                    WriteLine(arge.Message);
+                    Printer.WriteTitle(arge.Message);
                 }
                 catch(Exception)
                 { 
                     Printer.WriteTitle("El valor de la nota no es un número válido");
                     WriteLine("Saliendo del programa");
                 }
-                
+                finally{
+                    Printer.WriteTitle("Finally");
+                    Printer.Beep(2500,500,3);
+                }
             }
 
         }
