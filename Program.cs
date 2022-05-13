@@ -24,7 +24,43 @@ namespace CoreEscuela
             var listaPromXAsig = reporteador.getPromedioAlumnXAsignatura();
             var topPromedio = reporteador.GetListaTopPromedio(2);
 
-            Printer.WriteTitle("Captura de una Evaluación por Consola");
+            int opcion;
+            Console.WriteLine("1-Listar evaluaciones");
+            Console.WriteLine("2-Listar asignaturas");
+            Console.WriteLine("3-Listar evaluaciones por asignatura");
+            Console.WriteLine("4-Listar promedios por asignatura");
+            Console.WriteLine("5-Listar top de promedios por asignatura");
+            Console.WriteLine("Ingrese una opción");
+
+            opcion = Convert.ToInt32(Console.ReadLine());
+            switch (opcion)
+            {
+                case 1:
+                    Printer.WriteTitle("Lista de evaluaciones");
+                    ListarEvaluaciones(evalList);
+                    break;
+                case 2:
+                    Printer.WriteTitle("Lista de asignaturas");
+                    ListarAsignaturas(listaAsign);
+                    break;
+                case 3:
+                    Printer.WriteTitle("Lista de evaluaciones por asignatura");
+                    ListarEvaluacionesXAsignatura(listaEvalXAsign);
+                    break;
+                case 4:
+                    Printer.WriteTitle("Lista de promedios por asignatura");
+                    ListarPromediosXAsignatura(listaPromXAsig);
+                    break;
+                case 5:
+                    Printer.WriteTitle("Lista del top de promedios por asignatura");
+                    ListarTopPromedios(topPromedio);
+                    break;
+                default:
+                    Printer.WriteTitle("Ingrese una opción correcta");
+                    break;
+            }
+
+            /* Printer.WriteTitle("Captura de una Evaluación por Consola");
             Evaluacion newEval = new Evaluacion();
             float nota;
             string nombre,notaString;
@@ -75,8 +111,60 @@ namespace CoreEscuela
                     Printer.WriteTitle("Finally");
                     Printer.Beep(2500,500,3);
                 }
-            }
+            } */
 
+        }
+
+        private static void ListarTopPromedios(Dictionary<string, IEnumerable<AlumnoPromedio>> topPromedio)
+        {
+            foreach (var item in topPromedio)
+            {
+                Printer.WriteTitle(item.Key);
+                foreach (var it in item.Value)
+                {
+                    WriteLine(it);
+                }
+            }
+        }
+
+        private static void ListarPromediosXAsignatura(Dictionary<string, IEnumerable<object>> listaPromXAsig)
+        {
+            foreach (var asign in listaPromXAsig)
+            {
+                Printer.WriteTitle(asign.Key);
+                foreach (var prom in asign.Value)
+                {
+                    WriteLine(prom.ToString());
+                }
+            }
+        }
+
+        private static void ListarEvaluacionesXAsignatura(Dictionary<string, IEnumerable<Evaluacion>> listaEvalXAsign)
+        {
+            foreach (var item in listaEvalXAsign)
+            {
+                Printer.WriteTitle(item.Key);
+                foreach (var value in item.Value)
+                {
+                   WriteLine(value);
+                }
+            }
+        }
+
+        private static void ListarAsignaturas(IEnumerable<string> listaAsign)
+        {
+            foreach (var item in listaAsign)
+            {
+                WriteLine(item);
+            }
+        }
+
+        private static void ListarEvaluaciones(IEnumerable<Evaluacion> evalList)
+        {
+            foreach (var item in evalList)
+            {
+                WriteLine(item);
+            }
         }
 
         private static void AccionDelEvento(object sender, EventArgs e)
