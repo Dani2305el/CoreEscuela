@@ -7,6 +7,10 @@ namespace CoreEscuela.Util
         {
             WriteLine("".PadLeft(tam,'='));
         }
+        public static void PresioneEnter()
+        {
+            WriteLine("Presione enter para continuar...");
+        }
         public static void WriteTitle(string titulo)
         {
             int tam = titulo.Length+4;
