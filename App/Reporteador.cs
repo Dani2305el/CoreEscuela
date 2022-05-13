@@ -53,13 +53,18 @@ namespace CoreEscuela.App
 
             foreach (var asignConEval in dicEvalXAsign)
             {
-                var dummy = from eval in asignConEval.Value 
-                    group eval by eval.Alumno.UniqueId
+                var promediosAlumn = from eval in asignConEval.Value 
+                    group eval by new{
+                        eval.Alumno.UniqueId,
+                        eval.Alumno.Nombre
+                        }
                     into grupoEvalsAlumno
-                    select new {
-                        AlumnoId = grupoEvalsAlumno.Key,
-                        Promedio = grupoEvalsAlumno.Average(evaluacion => evaluacion.Nota)
+                    select new AlumnoPromedio{
+                        alumnoId = grupoEvalsAlumno.Key.UniqueId,
+                        alumnoNombre = grupoEvalsAlumno.Key.Nombre,
+                        promedio = grupoEvalsAlumno.Average(evaluacion => evaluacion.Nota)
                     };
+                res.Add(asignConEval.Key,promediosAlumn);
             }
             return res;
         }

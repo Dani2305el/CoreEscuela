@@ -22,6 +22,8 @@ namespace CoreEscuela
             var listaAsign = reporteador.GetListaAsignaturas();
             var listaEvalXAsign = reporteador.getDicEvaluacionXAsign();
             var listaPromXAsig = reporteador.getPromedioAlumnXAsignatura();
+
+             
         }
 
         private static void AccionDelEvento(object sender, EventArgs e)
