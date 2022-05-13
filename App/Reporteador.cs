@@ -68,5 +68,20 @@ namespace CoreEscuela.App
             }
             return res;
         }
+         public Dictionary<string, IEnumerable<AlumnoPromedio>> GetListaTopPromedio(int x)
+        {
+            var resp = new Dictionary<string, IEnumerable<AlumnoPromedio>>();
+            var dicPromAlumPorAsignatura = getPromedioAlumnXAsignatura();
+
+            foreach (var item in dicPromAlumPorAsignatura)
+            {
+                var dummy = (from AlumnoPromedio ap in item.Value
+                             orderby ap.promedio descending
+                             select ap).Take(x);
+
+                resp.Add(item.Key, dummy);
+            }
+            return resp;
+        }
     }
 }

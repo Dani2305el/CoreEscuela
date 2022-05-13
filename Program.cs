@@ -22,6 +22,7 @@ namespace CoreEscuela
             var listaAsign = reporteador.GetListaAsignaturas();
             var listaEvalXAsign = reporteador.getDicEvaluacionXAsign();
             var listaPromXAsig = reporteador.getPromedioAlumnXAsignatura();
+            var topPromedio = reporteador.GetListaTopPromedio(2);
 
              
         }
